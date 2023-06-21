@@ -1,0 +1,128 @@
+@import url("https://fonts.googleapis.com/css2?family=Oxygen+Mono&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap");
+/* Variables */
+:root {
+  --bg-selected: rgba(0,0,0,0.03);
+  --bt-text: #3F1D35;
+  --bt-text-selected: #663399;
+  --bt-focus: rgba(0,0,0,0.06);
+  --text: #454746;
+  --border-color: grey;
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+/* Global */
+html {
+  /* vendor prefixes for box-sizing */
+  box-sizing: border-box;
+  /* for gradient backgounds */
+  min-height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: "Oswald", sans-serif;
+  font-size: 1.8rem;
+  line-height: 1.6;
+  background: linear-gradient(to right, #eefcff, #fff9fa);
+}
+
+/* TABS */
+.wrapper {
+  max-width: 1000px;
+  margin: 4rem auto;
+  padding: 2rem;
+}
+
+.tabs {
+  display: grid;
+  position: relative;
+}
+
+[role=tablist] {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+[role=tabpanel] {
+  background: var(--bg-selected);
+  padding: 2rem;
+  min-height: 50vh;
+  color: var(--text);
+  border-right: 2px solid var(--border-color);
+  border-left: 2px solid var(--border-color);
+  border-bottom: 2px solid var(--border-color);
+}
+
+button {
+  font-family: "Oxygen Mono", monospace;
+  font-weight: 600;
+  font-size: 2rem;
+  letter-spacing: 0.9rem;
+  padding: 1rem;
+  background: transparent;
+  color: var(--bt-text);
+  border: 0;
+  border-radius: 5px 5px 0 0;
+  border-bottom: 2px solid var(--border-color);
+  cursor: pointer;
+  /* remove the default margin on buttons in Safari */
+  margin: 0;
+}
+
+button[aria-selected=true] {
+  background: var(--bg-selected);
+  color: var(--bt-text-selected);
+  border-top: 2px solid var(--border-color);
+  border-left: 2px solid var(--border-color);
+  border-right: 2px solid var(--border-color);
+  border-bottom: 0;
+  outline: 0;
+}
+
+button[aria-selected=false]:hover {
+  font-size: 2.1rem;
+}
+
+/* replace the dotted outline for tab users with a semi-transparent background */
+button:focus {
+  outline: 0;
+  background: var(--bt-focus);
+}
+
+button::-moz-focus-inner {
+  border: 0;
+  background: var(--bt-focus);
+}
+
+/* Media queries */
+@media (max-width: 660px) {
+  .wrapper {
+    margin: 4rem auto;
+    padding: 1rem;
+  }
+
+  button {
+    border: 0;
+    border-radius: 5px 5px 5px 5px;
+  }
+
+  button[aria-selected=true] {
+    border: 2px solid var(--border-color);
+  }
+
+  [role=tablist] {
+    grid-template-columns: repeat(1, minmax(200px, 1fr));
+  }
+
+  [role=tabpanel] {
+    margin-top: 10px;
+    border: 2px solid var(--border-color);
+  }
+}
